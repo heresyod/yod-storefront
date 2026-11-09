@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: 'Instrument Serif', Georgia, serif;
+  --font-sans: 'Inter', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  color-scheme: dark;
+}
+
+html, body {
+  background: #000;
+  color: #F5F2EC;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: var(--font-sans);
+}
+
+*::selection {
+  background: #C8A96A;
+  color: #000;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #0A0A0A; }
+::-webkit-scrollbar-thumb { background: #2A2A2A; }
+::-webkit-scrollbar-thumb:hover { background: #3F3F3F; }
+
+/* Noise overlay utility */
+.noise {
+  position: relative;
+}
+.noise::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.04;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Hairline divider */
+.hairline {
+  background-image: linear-gradient(to right, transparent, #3F3F3F 20%, #3F3F3F 80%, transparent);
+  height: 1px;
+}
+
+/* Brand label (kerned uppercase) */
+.brand-label {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  font-size: 0.6875rem;
+  font-weight: 500;
+}
+
+/* Underline hover for links */
+.link-underline {
+  position: relative;
+  display: inline-block;
+}
+.link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1);
+}
+.link-underline:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Button primary */
+.btn-primary {
+  @apply inline-flex items-center justify-center bg-bone text-ink px-8 py-4 text-sm font-medium tracking-[0.2em] uppercase transition-all duration-300 hover:bg-accent hover:text-ink;
+}
+.btn-ghost {
+  @apply inline-flex items-center justify-center border border-steel text-bone px-8 py-4 text-sm font-medium tracking-[0.2em] uppercase transition-all duration-300 hover:bg-bone hover:text-ink hover:border-bone;
+}
