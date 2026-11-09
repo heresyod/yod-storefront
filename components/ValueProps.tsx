@@ -1,21 +1,23 @@
-const PROPS = [
-  { title: 'Premium quality', body: 'Crafted with perfection' },
-  { title: '100+ unique designs', body: 'For every kind of you' },
-  { title: 'Secure payments', body: 'Safe. Fast. Reliable.' },
-  { title: 'Worldwide shipping', body: 'Delivering everywhere' }
-];
-
+/* Copied verbatim from the coming-soon trust row (icons + copy). */
 export default function ValueProps() {
   return (
-    <section className="border-t border-iron bg-ink">
-      <div className="max-w-[1500px] mx-auto px-6 md:px-10 py-14 md:py-16">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-6">
-          {PROPS.map((p) => (
-            <div key={p.title} className="text-center md:text-left">
-              <div className="brand-label text-bone">{p.title}</div>
-              <p className="text-fog text-sm mt-2">{p.body}</p>
-            </div>
-          ))}
+    <section className="section">
+      <div className="trust">
+        <div>
+          <svg viewBox="0 0 24 24"><path d="M12 2 20 6.5v11L12 22 4 17.5v-11Z" /><path d="M4 6.5 12 11l8-4.5M12 11v11" /></svg>
+          <div><div className="t">Premium quality</div><div className="d">Crafted with perfection</div></div>
+        </div>
+        <div>
+          <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10" /></svg>
+          <div><div className="t">100+ unique designs</div><div className="d">For every kind of you</div></div>
+        </div>
+        <div>
+          <svg viewBox="0 0 24 24"><path d="M12 2 20 5v6c0 5-3.5 9-8 11-4.5-2-8-6-8-11V5Z" /><path d="m8.5 12 2.5 2.5 4.5-5" /></svg>
+          <div><div className="t">Secure payments</div><div className="d">Safe. Fast. Reliable.</div></div>
+        </div>
+        <div>
+          <svg viewBox="0 0 24 24"><path d="M2 7h12v9H2zM14 10h4l3 3v3h-7z" /><circle cx="6" cy="18" r="1.6" /><circle cx="18" cy="18" r="1.6" /></svg>
+          <div><div className="t">Worldwide shipping</div><div className="d">Delivering everywhere</div></div>
         </div>
       </div>
     </section>

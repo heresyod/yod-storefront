@@ -12,9 +12,7 @@ export default function DropsGrid() {
   useEffect(() => {
     let mounted = true;
     fetchDropProducts('DROP-01')
-      .then((data) => {
-        if (mounted) setProducts(data);
-      })
+      .then((data) => mounted && setProducts(data))
       .catch(console.error)
       .finally(() => mounted && setLoading(false));
     return () => {
@@ -23,45 +21,22 @@ export default function DropsGrid() {
   }, []);
 
   return (
-    <section id="drops" className="relative py-24 md:py-32 bg-ink border-t border-iron">
-      <div className="max-w-[1500px] mx-auto px-6 md:px-10">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
-          <div>
-            <div className="brand-label text-fog mb-4">Curated · Drop 01</div>
-            <h2 className="font-display text-display-lg text-bone">
-              The first <em className="not-italic italic">YOD drop.</em>
-            </h2>
-          </div>
-          <p className="max-w-sm text-fog text-sm leading-relaxed">
-            Three signature pieces. Heavyweight 240 GSM combed cotton, oversized cut,
-            with DTF graphic prints engineered to outlast the season.
-          </p>
-        </div>
-
-        {loading ? (
-          <SkeletonGrid />
-        ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-16">
-            {products.map((p) => (
-              <ProductCard key={p.id} product={p} />
-            ))}
-          </div>
-        )}
+    <section id="drops" className="section">
+      <div className="section-head">
+        <span className="small">Drop 01</span>
+        <h2>The first <em>YOD</em> drop</h2>
+        <p>Three signature pieces. Heavyweight 240 GSM combed cotton, oversized cut, prints engineered to outlast the season.</p>
+      </div>
+      <div className="cards">
+        {loading
+          ? Array.from({ length: 3 }).map((_, i) => (
+              <div key={i} className="card" aria-hidden>
+                <div className="visual" />
+                <div className="body" style={{ minHeight: 220 }} />
+              </div>
+            ))
+          : products.map((p) => <ProductCard key={p.id} product={p} />)}
       </div>
     </section>
-  );
-}
-
-function SkeletonGrid() {
-  return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-16">
-      {Array.from({ length: 6 }).map((_, i) => (
-        <div key={i} className="animate-pulse">
-          <div className="aspect-[4/5] bg-smoke mb-5" />
-          <div className="h-5 w-1/2 bg-smoke mb-2" />
-          <div className="h-4 w-1/3 bg-smoke" />
-        </div>
-      ))}
-    </div>
   );
 }
