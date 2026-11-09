@@ -41,7 +41,7 @@ export default function Hero() {
         </div>
         <div className="meta small reveal d4">
           <div><b>01</b>First drop</div>
-          <div><b>03</b>Signature pieces</div>
+          <div><b>04</b>Colourways</div>
           <div><b>100+</b>Designs to come</div>
         </div>
       </div>

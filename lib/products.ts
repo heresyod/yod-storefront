@@ -1,120 +1,37 @@
 import type { Product } from './types';
 
 /**
- * Phase-1 catalogue — curated DTF-printed oversized tees.
- * Replace this mock layer with REST/GraphQL calls from lib/api.ts
- * when the storefront backend is live. Shape is stable.
+ * Drop 01 — the oversized mock-neck tee in four colourways.
+ * Images are background-removed cut-outs (transparent WebP) so they sit
+ * on the site's own card background. Replace this mock layer with
+ * REST/GraphQL calls from lib/api.ts when the backend is live.
  */
+const base = {
+  subtitle: 'Oversized mock neck',
+  price: 2199,
+  currency: 'INR' as const,
+  fitSpec: '240 GSM Oversized Fit',
+  gsm: 240,
+  fabric: '100% Combed Cotton',
+  sizes: ['S', 'M', 'L', 'XL', 'XXL'] as Product['sizes'],
+  nfcEnabled: true,
+  dropCode: 'DROP-01',
+  inStock: true
+};
+
 export const DROP_01_PRODUCTS: Product[] = [
-  {
-    id: 'yod-001',
-    slug: 'the-vulture-noir',
-    title: 'The Vulture',
-    subtitle: 'Crest of the first collection',
-    price: 2199,
-    currency: 'INR',
-    fitSpec: '240 GSM Oversized Fit',
-    gsm: 240,
-    fabric: '100% Combed Cotton',
-    sizes: ['S', 'M', 'L', 'XL', 'XXL'],
-    colorway: 'Noir',
-    imageFront: '/products/vulture-front.jpg',
-    imageBack: '/products/vulture-back.jpg',
-    nfcEnabled: true,
-    dropCode: 'DROP-01',
-    inStock: true
-  },
-  {
-    id: 'yod-002',
-    slug: 'definition-mark',
-    title: 'Definition',
-    subtitle: 'The founding mark, reversed',
-    price: 2199,
-    currency: 'INR',
-    fitSpec: '240 GSM Oversized Fit',
-    gsm: 240,
-    fabric: '100% Combed Cotton',
-    sizes: ['S', 'M', 'L', 'XL', 'XXL'],
-    colorway: 'Bone',
-    imageFront: '/products/definition-front.jpg',
-    imageBack: '/products/definition-back.jpg',
-    nfcEnabled: true,
-    dropCode: 'DROP-01',
-    inStock: true
-  },
-  {
-    id: 'yod-003',
-    slug: 'quiet-rebellion',
-    title: 'Quiet Rebellion',
-    subtitle: 'Stitched into every seam',
-    price: 2299,
-    currency: 'INR',
-    fitSpec: '240 GSM Oversized Fit',
-    gsm: 240,
-    fabric: '100% Combed Cotton',
-    sizes: ['S', 'M', 'L', 'XL', 'XXL'],
-    colorway: 'Graphite',
-    imageFront: '/products/rebellion-front.jpg',
-    imageBack: '/products/rebellion-back.jpg',
-    nfcEnabled: true,
-    dropCode: 'DROP-01',
-    inStock: true
-  },
-  {
-    id: 'yod-004',
-    slug: 'own-world',
-    title: 'Own World',
-    subtitle: 'For those who draw their own line',
-    price: 2199,
-    currency: 'INR',
-    fitSpec: '240 GSM Oversized Fit',
-    gsm: 240,
-    fabric: '100% Combed Cotton',
-    sizes: ['S', 'M', 'L', 'XL', 'XXL'],
-    colorway: 'Noir',
-    imageFront: '/products/ownworld-front.jpg',
-    imageBack: '/products/ownworld-back.jpg',
-    nfcEnabled: true,
-    dropCode: 'DROP-01',
-    inStock: true
-  },
-  {
-    id: 'yod-005',
-    slug: 'architect-cut',
-    title: 'Architect',
-    subtitle: 'Construction over graphic',
-    price: 2399,
-    currency: 'INR',
-    fitSpec: '240 GSM Oversized Fit',
-    gsm: 240,
-    fabric: '100% Combed Cotton',
-    sizes: ['S', 'M', 'L', 'XL', 'XXL'],
-    colorway: 'Bone',
-    imageFront: '/products/architect-front.jpg',
-    imageBack: '/products/architect-back.jpg',
-    nfcEnabled: true,
-    dropCode: 'DROP-01',
-    inStock: true
-  },
-  {
-    id: 'yod-006',
-    slug: 'patient-unflinching',
-    title: 'Patient. Unflinching.',
-    subtitle: 'Back-panel manifesto',
-    price: 2299,
-    currency: 'INR',
-    fitSpec: '240 GSM Oversized Fit',
-    gsm: 240,
-    fabric: '100% Combed Cotton',
-    sizes: ['S', 'M', 'L', 'XL', 'XXL'],
-    colorway: 'Graphite',
-    imageFront: '/products/patient-front.jpg',
-    imageBack: '/products/patient-back.jpg',
-    nfcEnabled: true,
-    dropCode: 'DROP-01',
-    inStock: true
-  }
+  { ...base, id: 'yod-001', slug: 'mock-neck-noir', title: 'Noir', colorway: 'Noir', imageFront: '/products/noir.webp', imageBack: '/products/noir.webp' },
+  { ...base, id: 'yod-002', slug: 'mock-neck-chalk', title: 'Chalk', colorway: 'Chalk', imageFront: '/products/chalk.webp', imageBack: '/products/chalk.webp' },
+  { ...base, id: 'yod-003', slug: 'mock-neck-bone', title: 'Bone', colorway: 'Bone', imageFront: '/products/bone.webp', imageBack: '/products/bone.webp' },
+  { ...base, id: 'yod-004', slug: 'mock-neck-graphite', title: 'Graphite', colorway: 'Graphite', imageFront: '/products/graphite.webp', imageBack: '/products/graphite.webp' }
 ];
 
-export const formatINR = (amount: number): string =>
-  `₹${amount.toLocaleString('en-IN')}`;
+/** Swatch colours sampled from the product photography. */
+export const COLORWAYS: Record<string, string> = {
+  Noir: '#141414',
+  Chalk: '#ecebe6',
+  Bone: '#ece4d0',
+  Graphite: '#3a3a3a'
+};
+
+export const formatINR = (amount: number): string => `₹${amount.toLocaleString('en-IN')}`;

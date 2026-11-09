@@ -25,11 +25,11 @@ export default function DropsGrid() {
       <div className="section-head">
         <span className="small">Drop 01</span>
         <h2>The first <em>YOD</em> drop</h2>
-        <p>Three signature pieces. Heavyweight 240 GSM combed cotton, oversized cut, prints engineered to outlast the season.</p>
+        <p>One silhouette, four colourways. The oversized mock neck in heavyweight 240 GSM combed cotton, cut to hold its line.</p>
       </div>
-      <div className="cards">
+      <div className="cards cards-4">
         {loading
-          ? Array.from({ length: 3 }).map((_, i) => (
+          ? Array.from({ length: 4 }).map((_, i) => (
               <div key={i} className="card" aria-hidden>
                 <div className="visual" />
                 <div className="body" style={{ minHeight: 220 }} />

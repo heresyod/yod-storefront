@@ -64,7 +64,10 @@ export default function CartDrawer() {
             <ul>
               {lines.map((line) => (
                 <li key={`${line.productId}-${line.size}`} className="flex gap-4" style={{ padding: '1.4rem 1.6rem', borderBottom: '1px solid var(--line)' }}>
-                  <div style={{ width: 72, height: 88, flex: 'none', border: '1px solid var(--line)', background: 'linear-gradient(#101010, #070707)' }} />
+                  <div style={{ width: 72, height: 88, flex: 'none', border: '1px solid var(--line)', background: 'radial-gradient(ellipse 70% 50% at 50% 10%, rgba(255,255,255,.10), transparent 65%), linear-gradient(#101010, #070707)', display: 'grid', placeItems: 'center' }}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    {line.image && <img src={line.image} alt="" style={{ width: '88%', height: 'auto' }} />}
+                  </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex justify-between gap-3">
                       <h3 className="serif truncate" style={{ fontSize: '1.25rem', fontWeight: 400, letterSpacing: '.08em', color: 'var(--silver)' }}>{line.title}</h3>

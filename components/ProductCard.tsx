@@ -1,22 +1,15 @@
 'use client';
+/* eslint-disable @next/next/no-img-element */
 
 import { useState } from 'react';
 import { useCart } from '@/lib/cart-context';
-import { formatINR } from '@/lib/products';
+import { COLORWAYS, formatINR } from '@/lib/products';
 import type { Product, Size } from '@/lib/types';
-
-/* Tee colourways expressed only in the coming-soon palette. */
-const TEE: Record<string, { fill: string; print: string; swatch: string }> = {
-  Noir: { fill: '#0b0b0b', print: '#d2d2d2', swatch: '#0b0b0b' },
-  Bone: { fill: '#d2d2d2', print: '#0b0b0b', swatch: '#d2d2d2' },
-  Graphite: { fill: '#2a2a2a', print: '#8f8f8f', swatch: '#5a5a5a' }
-};
 
 export default function ProductCard({ product }: { product: Product }) {
   const { addItem } = useCart();
   const [size, setSize] = useState<Size | null>(null);
   const [error, setError] = useState(false);
-  const tee = TEE[product.colorway] ?? TEE.Noir;
 
   const handleAdd = () => {
     if (!size) return setError(true);
@@ -30,25 +23,20 @@ export default function ProductCard({ product }: { product: Product }) {
         {product.nfcEnabled && <span className="chip">NFC</span>}
         <span className="code small">{product.dropCode}</span>
         <div className="tee">
-          <svg viewBox="0 0 280 300" aria-hidden="true">
-            <path
-              d="M20 60 90 10 110 40h60l20-30 70 50-20 50-20-10v190H60V100l-20 10Z"
-              fill={tee.fill}
-              stroke="rgba(255,255,255,0.18)"
-              strokeWidth="1"
-            />
-            <path d="M110 40q30 15 60 0" fill="none" stroke="rgba(255,255,255,0.18)" strokeWidth="1.2" />
-            <text x="140" y="150" textAnchor="middle" fill={tee.print} fontFamily="var(--serif)" fontSize="22" letterSpacing="4">
-              YOD
-            </text>
-            <line x1="115" y1="160" x2="165" y2="160" stroke="#cbb58e" strokeWidth=".8" />
-          </svg>
+          <img
+            className="tee-img"
+            src={product.imageFront}
+            alt={`YOD oversized mock-neck tee in ${product.colorway}`}
+            width={1140}
+            height={1240}
+            loading="lazy"
+          />
         </div>
         {!product.inStock && <span className="soon">Sold out</span>}
       </div>
       <div className="body">
         <div className="swatches">
-          <i style={{ background: tee.swatch }} title={product.colorway} />
+          <i style={{ background: COLORWAYS[product.colorway] ?? '#0b0b0b' }} title={product.colorway} />
         </div>
         <h3>{product.title}</h3>
         <p className="sub">{product.subtitle} · {product.fitSpec}</p>
